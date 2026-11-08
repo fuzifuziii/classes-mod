@@ -22,11 +22,13 @@ public final class ClassManager {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static volatile Map<String, PlayerClass> classes = Map.of();
     private static volatile boolean allowChange = false;
+    private static volatile boolean dropForbidden = true;
 
     private static final String DEFAULT_CONFIG = """
             {
               "_comment": "blocked_mods: mod ids or * for all. blocked_items: item ids or #tags. allowed_items: whitelist, beats blocks. icon: item id shown in the menu.",
               "allow_class_change": false,
+              "drop_forbidden_items": true,
               "classes": {
                 "mage": {
                   "display_name": "Mage",
@@ -65,9 +67,11 @@ public final class ClassManager {
 
             Map<String, PlayerClass> loaded = new LinkedHashMap<>();
             boolean change;
+            boolean drop;
             try (Reader reader = Files.newBufferedReader(path)) {
                 JsonObject root = GSON.fromJson(reader, JsonObject.class);
                 change = root.has("allow_class_change") && root.get("allow_class_change").getAsBoolean();
+                drop = !root.has("drop_forbidden_items") || root.get("drop_forbidden_items").getAsBoolean();
                 JsonObject all = root.getAsJsonObject("classes");
 
                 for (Map.Entry<String, JsonElement> entry : all.entrySet()) {
@@ -87,6 +91,7 @@ public final class ClassManager {
 
             classes = loaded;
             allowChange = change;
+            dropForbidden = drop;
             ClassesMod.LOGGER.info("loaded {} player classes", loaded.size());
             return true;
         } catch (IOException | RuntimeException e) {
@@ -124,6 +129,10 @@ public final class ClassManager {
     public static PlayerClass getClassOf(Player player) {
         String id = player.getData(ModAttachments.PLAYER_CLASS);
         return id.isEmpty() ? null : classes.get(id);
+    }
+
+    public static boolean dropForbidden() {
+        return dropForbidden;
     }
 
     // player can pick a class when they have none or changing is allowed

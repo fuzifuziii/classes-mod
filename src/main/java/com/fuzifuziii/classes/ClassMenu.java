@@ -32,6 +32,8 @@ public final class ClassMenu {
         if (playerClass == null || !ClassManager.canChoose(player)) return;
 
         player.setData(ModAttachments.PLAYER_CLASS, id);
+        // drop items the new class cannot hold
+        InventoryEnforcer.sweep(player);
         player.sendSystemMessage(Component.translatable("message.classes.selected", playerClass.displayName()));
     }
 }

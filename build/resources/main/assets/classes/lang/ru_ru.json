@@ -9,5 +9,6 @@
   "screen.classes.allowed_items": "Всегда подбирает",
   "message.classes.selected": "Твой класс теперь: %s",
   "message.classes.no_classes": "Классы не заданы",
-  "message.classes.change_disabled": "Смена класса отключена"
+  "message.classes.change_disabled": "Смена класса отключена",
+  "message.classes.dropped": "Твой класс не может держать: %s"
 }

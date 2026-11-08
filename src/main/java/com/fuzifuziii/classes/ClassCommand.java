@@ -42,6 +42,7 @@ public final class ClassCommand {
         Collection<ServerPlayer> targets = EntityArgument.getPlayers(ctx, "targets");
         for (ServerPlayer player : targets) {
             player.setData(ModAttachments.PLAYER_CLASS, id);
+            InventoryEnforcer.sweep(player);
             player.sendSystemMessage(Component.literal("your class is now " + playerClass.displayName()));
         }
 
@@ -82,6 +83,9 @@ public final class ClassCommand {
             ctx.getSource().sendFailure(Component.literal("reload failed, check the log"));
             return 0;
         }
+
+        // apply new rules to online players
+        ctx.getSource().getServer().getPlayerList().getPlayers().forEach(InventoryEnforcer::sweep);
 
         ctx.getSource().sendSuccess(() -> Component.literal(
                 "reloaded " + ClassManager.all().size() + " class(es)"), true);

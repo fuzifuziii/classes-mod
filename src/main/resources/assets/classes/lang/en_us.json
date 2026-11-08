@@ -9,5 +9,6 @@
   "screen.classes.allowed_items": "Can always pick up",
   "message.classes.selected": "Your class is now %s",
   "message.classes.no_classes": "No classes are defined",
-  "message.classes.change_disabled": "Changing class is disabled"
+  "message.classes.change_disabled": "Changing class is disabled",
+  "message.classes.dropped": "Your class cannot hold %s"
 }
