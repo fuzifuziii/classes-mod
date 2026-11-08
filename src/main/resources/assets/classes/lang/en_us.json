@@ -1,0 +1,13 @@
+{
+  "key.classes.open": "Open class menu",
+  "key.categories.classes": "Classes",
+  "screen.classes.title": "Choose your class",
+  "screen.classes.confirm": "Confirm",
+  "screen.classes.pick": "Pick a class on the left",
+  "screen.classes.blocked_mods": "Cannot pick up mods",
+  "screen.classes.blocked_items": "Cannot pick up items",
+  "screen.classes.allowed_items": "Can always pick up",
+  "message.classes.selected": "Your class is now %s",
+  "message.classes.no_classes": "No classes are defined",
+  "message.classes.change_disabled": "Changing class is disabled"
+}

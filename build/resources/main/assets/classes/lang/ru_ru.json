@@ -1,0 +1,13 @@
+{
+  "key.classes.open": "Открыть меню классов",
+  "key.categories.classes": "Классы",
+  "screen.classes.title": "Выбери свой класс",
+  "screen.classes.confirm": "Подтвердить",
+  "screen.classes.pick": "Выбери класс слева",
+  "screen.classes.blocked_mods": "Не подбирает моды",
+  "screen.classes.blocked_items": "Не подбирает предметы",
+  "screen.classes.allowed_items": "Всегда подбирает",
+  "message.classes.selected": "Твой класс теперь: %s",
+  "message.classes.no_classes": "Классы не заданы",
+  "message.classes.change_disabled": "Смена класса отключена"
+}
